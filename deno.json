@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "dev": "deno run -A --watch main.tsx & deno task dev:css",
+    "dev": "deno run -A --watch ./src/main.tsx & deno task dev:css",
     "dev:css": "tailwindcss -i ./client/input.css -o ./public/styles.css --watch"
   },
   "imports": {

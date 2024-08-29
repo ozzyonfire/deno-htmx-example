@@ -1,5 +1,5 @@
 import { Hono } from "@hono/hono";
-import { Main, Counter } from "./views/main.tsx";
+import { Main, Counter } from "../views/main.tsx";
 import { serveStatic } from "@hono/hono/deno";
 import { watchHandler } from "./hmr.ts";
 
