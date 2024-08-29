@@ -1,3 +1,5 @@
+const isDev = Deno.env.get("DENO_ENV") === "development";
+
 export function Main(props: { count: number }) {
   const { count } = props;
   return (
@@ -5,14 +7,20 @@ export function Main(props: { count: number }) {
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="styles.css" rel="stylesheet" />
+        {isDev && <script defer src="/hmr.js"></script>}
         <script src="https://unpkg.com/htmx.org/dist/htmx.js"></script>
         <title>Document</title>
       </head>
-      <body>
+      <body class="bg-blue-200 m-4">
         <div id="counter">
           <Counter count={count} />
         </div>
-        <button hx-post="/count" hx-target="#counter">
+        <button
+          class="bg-slate-700 rounded-lg text-white p-2"
+          hx-post="/count"
+          hx-target="#counter"
+        >
           Increment
         </button>
       </body>
@@ -23,8 +31,4 @@ export function Main(props: { count: number }) {
 export function Counter(props: { count: number }) {
   const { count } = props;
   return <div id="count">Count: {count}</div>;
-}
-
-export function Form() {
-  return <form hx-post="/contact"></form>;
 }
