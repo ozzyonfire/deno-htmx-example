@@ -13,13 +13,11 @@ export function Main(props: { count: number }) {
         <title>Document</title>
       </head>
       <body class="bg-blue-200 m-4">
-        <div id="counter">
-          <Counter count={count} />
-        </div>
+        <Counter count={count} />
         <button
           class="bg-slate-700 rounded-lg text-white p-2"
           hx-post="/count"
-          hx-target="#counter"
+          hx-target="#count"
         >
           Increment
         </button>
