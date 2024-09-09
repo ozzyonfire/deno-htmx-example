@@ -1,6 +1,6 @@
 const isDev = Deno.env.get("DENO_ENV") === "development";
 
-export function Main(props: { count: number }) {
+export function Main(props: { count: number; isLoggedIn: boolean }) {
   const { count } = props;
   return (
     <html lang="en">
@@ -22,6 +22,14 @@ export function Main(props: { count: number }) {
           Increment
         </button>
       </body>
+      {props.isLoggedIn ? (
+        <Logout />
+      ) : (
+        <div class="flex gap-2 items-center">
+          <Login />
+          <GoogleLogin />
+        </div>
+      )}
     </html>
   );
 }
@@ -29,4 +37,32 @@ export function Main(props: { count: number }) {
 export function Counter(props: { count: number }) {
   const { count } = props;
   return <div id="count">Count: {count}</div>;
+}
+
+export function Login() {
+  return (
+    <form action="/sign-in" method="post">
+      <button class="bg-green-500 rounded-lg text-white p-2">
+        Sign In with Github
+      </button>
+    </form>
+  );
+}
+
+export function GoogleLogin() {
+  return (
+    <form action="/google-sign-in" method="post">
+      <button class="bg-blue-500 rounded-lg text-white p-2">
+        Sign In with Google
+      </button>
+    </form>
+  );
+}
+
+export function Logout() {
+  return (
+    <form action="/sign-out" method="get">
+      <button class="bg-red-500 rounded-lg text-white p-2">Sign Out</button>
+    </form>
+  );
 }

@@ -1,9 +1,10 @@
 {
   "tasks": {
-    "dev": "deno run -A --env --watch ./src/main.tsx & deno task dev:css",
+    "dev": "deno run -A --unstable-kv --env --watch ./src/main.tsx & deno task dev:css",
     "dev:css": "tailwindcss -i ./client/input.css -o ./public/styles.css --watch"
   },
   "imports": {
+    "@deno/kv-oauth": "jsr:@deno/kv-oauth@^0.11.0",
     "@hono/hono": "jsr:@hono/hono@^4.5.9",
     "@std/assert": "jsr:@std/assert@1",
     "tailwindcss": "npm:tailwindcss@^3.4.10",
